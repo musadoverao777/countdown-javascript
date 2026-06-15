@@ -1,0 +1,44 @@
+:root{
+    --bg-color: black;
+    --color-primary: white;
+    --color-secundary: #707070;
+}
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    height: 100vh;
+}
+
+.count-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    font-family: Monaco;
+    font-weight: 100;
+}
+
+.count-div div{
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.count-div div p:first-child{
+    font-size: xxx-large;
+    color: var(--color-primary);
+}
+
+.count-div div p:last-child{
+    font-size: small;
+    color: var(--color-secundary)
+}
