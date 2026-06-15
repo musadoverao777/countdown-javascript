@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet" href="./styles/new_countdown.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+    <title>New CountDown</title>
+</head>
+<body>
+    <header>
+        <button><</button>
+        <p>NOVA CONTAGEM</p>
+    </header>
+    <form action="" method="post">
+        <p>NOME DO EVENTO</p>
+        <input type="text">
+        <input type="text" id="date-event">
+    </form>
+    <footer>
+        <button>
+            Definir contagem
+        </button>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
+    <script>
+    // Troca os rótulos dos dias da semana para uma única letra
+    flatpickr.l10ns.pt.weekdays.shorthand = ["D", "S", "T", "Q", "Q", "S", "S"];
+
+    flatpickr("#date-event", {
+        locale: "pt",        // mês e dias da semana em português
+        dateFormat: "d/m/Y",
+        minDate: "today",    // não deixa escolher datas passadas (bom pra countdown)
+        inline: true         // mostra o calendário sempre aberto, igual ao seu print
+    });
+    </script>
+</body>
+</html>
