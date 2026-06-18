@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet" href="./styles/countdown_finish.css">
+    <title>Countdown Finish</title>
+</head>
+<body>
+    <header>
+        <p>VIAGEM AO JAPÃO</p>
+    </header>
+    <div class="final-message">
+        <p>A ESPERA ACABOU</p>
+        <h1>É hoje</h1>
+        <p>15 DE JUNHO DE 2026</p>
+        <div id="container-confetes"></div>
+    </div>
+    <footer>
+        <button>Iniciar nova contagem</button>
+    </footer>
+</body>
+<script>
+    function criarConfete() {
+    const container = document.getElementById('container-confetes');
+    const confete = document.createElement('div');
+    confete.classList.add('confete');
+    
+    // Cores sortidas
+    const cores = ['#ff007f', '#7928ca', '#4bb050', '#ffeb3b', '#00e5ff'];
+    const corAleatoria = cores[Math.floor(Math.random() * cores.length)];
+    
+    // Aleatoriedade de tamanho, posição e velocidade
+    const tamanho = Math.random() * 10 + 5; // 5px a 15px
+    const posicaoX = Math.random() * 100;
+    const atraso = Math.random() * 5; // Atraso inicial
+    const duracao = Math.random() * 3 + 2; // 2s a 5s
+    
+    confete.style.width = `${tamanho}px`;
+    confete.style.height = `${tamanho}px`;
+    confete.style.backgroundColor = corAleatoria;
+    confete.style.left = `${posicaoX}%`;
+    confete.style.animationDuration = `${duracao}s`;
+    confete.style.animationDelay = `${atraso}s`;
+    
+    // Se for quadrado, pode usar border-radius: 0. Se for círculo, 50%
+    if (Math.random() > 0.5) {
+        confete.style.borderRadius = '50%';
+    }
+    
+    container.appendChild(confete);
+    
+    // Remove o elemento após a animação para não sobrecarregar
+    setTimeout(() => {
+        confete.remove();
+    }, (duracao + atraso) * 1000);
+    }
+
+    // Gerar vários confetes
+    for (let i = 0; i < 100; i++) {
+    criarConfete();
+    }
+
+</script>
+</html>
