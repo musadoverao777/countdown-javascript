@@ -39,14 +39,17 @@ button:hover{
 form{
     display: flex;
     flex-direction: column;
+    flex: 1;
+    width: 100%;
 }
 
 form p{
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-size: x-small;
     color: var(--color-secundary);
     letter-spacing: 3px;
+    margin-left: 2.5rem;
 }
 
 form input {
@@ -60,6 +63,7 @@ form input {
     color: var(--color-primary);
     font-size: x-large;
     margin-bottom: 2rem;
+    align-self: center;
 }
 
 #date-event {
