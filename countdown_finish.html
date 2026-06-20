@@ -10,12 +10,12 @@
 <body>
     <div id="container-confetes"></div>
     <header>
-        <p>VIAGEM AO JAPÃO</p>
+        <p id="name"></p>
     </header>
     <div class="final-message">
         <p>A ESPERA ACABOU</p>
         <h1>É hoje</h1>
-        <p>15 DE JUNHO DE 2026</p>
+        <p id="date-event">15 DE JUNHO DE 2026</p>
     </div>
     <footer>
         <button onclick="createNewCountdown()" >Iniciar nova contagem</button>
@@ -61,10 +61,29 @@
     }, (duracao + atraso) * 1000);
     }
 
-    // Gerar vários confetes
-    for (let i = 0; i < 100; i++) {
-    criarConfete();
-    }
+    document.addEventListener("DOMContentLoaded", function(){
+        let eventName;
+        let dateEventStr;
+
+        let params = new URLSearchParams(window.location.search);
+        eventName = params.get("name");
+        document.getElementById("name").textContent = eventName.toUpperCase();
+
+        dateEventStr = params.get("date-event");
+        let [day, month, year] = dateEventStr.split("/");
+
+        let meses = ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO",
+                     "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"];
+        let montStr = meses[month - 1]; // "06" -> índice 5 -> "JUNHO"
+
+        document.getElementById("date-event").textContent = day + " DE " + montStr + " DE " + year;
+
+        // Gerar vários confetes
+        for (let i = 0; i < 100; i++) {
+        criarConfete();
+        }
+    
+    })
 
 </script>
 </html>

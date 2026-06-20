@@ -11,19 +11,19 @@
 </head>
 <body>
     <header>
-        <button><</button>
+        <button onclick="backtoLatestPage()"><</button>
         <p>NOVA CONTAGEM</p>
     </header>
-    <form action="" method="post">
+    <form action="./countdown.html" method="get">
         <p>NOME DO EVENTO</p>
-        <input type="text">
-        <input type="text" id="date-event">
+        <input type="text" id="name" name="name" required>
+        <input type="text" id="date-event" name="date-event" required>
+        <footer>
+            <button type="submit" >
+                Definir contagem
+            </button>
+        </footer>
     </form>
-    <footer>
-        <button>
-            Definir contagem
-        </button>
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/pt.js"></script>
     <script>
@@ -36,6 +36,11 @@
         minDate: "today",    // não deixa escolher datas passadas (bom pra countdown)
         inline: true         // mostra o calendário sempre aberto, igual ao seu print
     });
+    </script>
+    <script>
+        function  backtoLatestPage() {
+        window.history.back()
+        }
     </script>
 </body>
 </html>

@@ -9,31 +9,75 @@
 </head>
 <body>
     <header>
-        <p>VIAGEM AO JAPÃO</p>
+        <p id="name"></p>
     </header>
     <div class="count-div">
         <div>
-            <p id="days">533</p>
+            <p id="days"></p>
             <p>DIAS</p>
         </div>
         <div>
-            <p id="hours">23</p>
-            <p>DIAS</p> 
+            <p id="hours"></p>
+            <p>HORAS</p> 
         </div>
         <div>
-            <p id="minutes">38</p>
+            <p id="minutes"></p>
             <p>MINUTOS</p> 
         </div>
         <div>
-            <p id="seconds">41</p>
+            <p id="seconds"></p>
             <p>SEGUNDOS</p> 
         </div>
     </div>
     
 </body>
 <script>
+
+    let eventDate;
+    let eventName;
+    let dateEventStr;
+
+    function updateCountdown() {
+        let dateToday = new Date();
+
+        // diferença em milissegundos
+        let diff = eventDate - dateToday;
+
+        // se a data já chegou (ou passou), vai para a tela final
+        if (diff <= 0) {
+            window.location.href = "countdown_finish.html?name=" +
+                encodeURIComponent(eventName) +
+                "&date-event=" + encodeURIComponent(dateEventStr);
+            return;
+        }
+
+        // converte para dias, horas, minutos e segundos
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        let minutes = Math.floor((diff / (1000 * 60)) % 60);
+        let seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+    }
+
     document.addEventListener("DOMContentLoaded", function(){
-        
+        let params = new URLSearchParams(window.location.search);
+        eventName = params.get("name");
+        document.getElementById("name").textContent = eventName.toUpperCase();
+
+        dateEventStr = params.get("date-event"); // ex: "20/06/2026"
+        let [day, month, year] = dateEventStr.split("/");
+        // mês começa em 0 (janeiro = 0), por isso "month - 1"
+        eventDate = new Date(year, month - 1, day);
+
+        // TESTE: data daqui 1 minuto
+       // eventDate = new Date(Date.now() + 60 * 1000);
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     })
 </script>
 </html>
